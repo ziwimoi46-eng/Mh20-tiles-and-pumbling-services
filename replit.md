@@ -1,45 +1,48 @@
-# [Project name]
+# MH20 Tiles & Plumbing Services
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Pure static website for MH20 Tiles & Plumbing Services — Chhatrapati Sambhajinagar.
 
-## Run & Operate
+## Structure
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+```
+/
+├── index.html          ← Full single-page website
+├── css/style.css       ← All styles
+├── js/main.js          ← Menu toggle, FAQ accordion, WhatsApp form
+├── images/             ← Bathroom renovation photos (bathroom1–10.jpg)
+├── vercel.json         ← Vercel static deployment config
+└── .gitignore
+```
 
-## Stack
+## Run locally
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
 
-## Where things live
+Or with Node:
+```bash
+npx serve .
+```
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+## Deploy to Vercel
 
-## Architecture decisions
+1. Push to GitHub
+2. Import repository in Vercel
+3. **No build command, no output directory** — Vercel reads `vercel.json` and serves the root as-is
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+## WhatsApp booking
 
-## Product
+Phone: `919820636495` (with country code prefix)  
+Form data is encoded as a pre-filled WhatsApp message to `wa.me/919820636495`
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+## Business address
+
+Shop No 4, Beed Bypass Rd, Opposite PNG Jewellery,  
+Satara Deolai Parisar, Chhatrapati Sambhajinagar, Maharashtra 431001
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
-
-## Gotchas
-
-_Populate as you build — sharp edges, "always run X before Y" rules._
-
-## Pointers
-
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- Pure HTML/CSS/JS only — no build tools, no frameworks, no TypeScript
+- Deployable directly on Vercel/Netlify/GitHub Pages with zero build step
